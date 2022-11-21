@@ -8,6 +8,11 @@ import java.util.Vector;
 
 public class ChatServer {
     public static Vector<ClientHandler> clients = new Vector<>();
+    private static void informNew(String name) throws IOException {
+        for (ClientHandler handler : clients)
+            handler.dos.writeUTF(name + " is just logged in");
+    }
+
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
@@ -23,6 +28,7 @@ public class ChatServer {
                 DataOutputStream dos = new DataOutputStream(s.getOutputStream());
                 String name = dis.readUTF();
                 System.out.println(name + ": Welcome to the server.");
+                informNew(name);
 
                  // 클라이언트에게 메시지 전송
                 /* System.out.print("Chat: ");
