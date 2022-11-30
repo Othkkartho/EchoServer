@@ -56,7 +56,7 @@ public class ChatServer {
                         }
                         else {
                             buffer.flip();
-                            client.read(buffer);    // 데이터를 그대로 송신
+                            client.write(buffer);    // 데이터를 그대로 송신
                             buffer.clear();
                         }
                     }
